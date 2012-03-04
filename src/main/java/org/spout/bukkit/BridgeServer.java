@@ -82,6 +82,7 @@ public class BridgeServer implements Server {
 	public void init(org.spout.api.Server server) {
 		this.server = server;
 		loadPlugins();
+		enablePlugins(PluginLoadOrder.STARTUP);
 	}
 
 	private void loadPlugins() {
@@ -107,7 +108,7 @@ public class BridgeServer implements Server {
 		Plugin[] plugins = pluginManager.getPlugins();
 
 		for (Plugin plugin : plugins) {
-			if ((!plugin.isEnabled()) && (plugin.getDescription().getLoad() == type)) {
+			if (!plugin.isEnabled()) { //&& (plugin.getDescription().getLoad() == type)) { This causes plugins to not load
 				loadPlugin(plugin);
 			}
 		}
@@ -444,7 +445,7 @@ public class BridgeServer implements Server {
 
 	@Override
 	public Set<String> getIPBans() {
-		return (Set<String>) server.getIPBans();
+		return (HashSet<String>) server.getIPBans();
 	}
 
 	@Override
