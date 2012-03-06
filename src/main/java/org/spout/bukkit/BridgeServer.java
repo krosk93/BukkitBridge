@@ -70,8 +70,8 @@ public class BridgeServer implements Server {
 	private org.spout.api.Server server;
 	private final String bukkitVersion = Versioning.getBukkitVersion();
 	private final ServicesManager servicesManager = new SimpleServicesManager();
-	private final SimpleCommandMap commandMap = new SimpleCommandMap(this);
-	private final PluginManager pluginManager = new SimplePluginManager(this, commandMap);
+	private final BridgeCommandMap commandMap = new BridgeCommandMap(this);
+	private final PluginManager pluginManager = new BridgePluginManager(this, commandMap);
 	private final StandardMessenger messenger = new StandardMessenger();
 	private final BukkitBridge plugin;
 
@@ -471,7 +471,8 @@ public class BridgeServer implements Server {
 
 	@Override
 	public GameMode getDefaultGameMode() {
-		return GameMode.getByValue(VanillaPlugin.defaultGamemode.getId());
+		//return GameMode.getByValue(VanillaPlugin.defaultGamemode.getId());
+		return null;
 	}
 
 	@Override
